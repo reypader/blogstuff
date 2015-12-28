@@ -1,0 +1,260 @@
+{
+	"id": "e05b8941-fda7-cd84-ac80-578a88c1a103",
+	"name": "complex_request_handling_samples",
+	"order": [
+		"21783950-8995-ebca-b2a5-21c44b5e1fae",
+		"4580e5b7-d1c0-dfb2-0430-2a2be1a104c7",
+		"b595c556-80e8-09fa-c8e3-6648da34167b",
+		"86e2c74b-4955-f75a-f8d8-40dc4afebefc",
+		"0ce976a9-362b-291f-3439-11ce08e2a202",
+		"2b4dd5a8-ca19-e785-10bf-abc46ad3c7eb",
+		"465de0f6-010f-cc56-513e-14dbee743394",
+		"e33259ac-ce69-7fc9-1727-bfea78ea2558",
+		"3d14c0de-a431-281d-57a2-fea5a101ba7c",
+		"35936a78-9e4d-3060-34cd-cb6511ec735d",
+		"04e491b5-1b1e-02fa-aae2-39ede0d9032d"
+	],
+	"timestamp": 1449646755936,
+	"requests": [
+		{
+			"id": "04e491b5-1b1e-02fa-aae2-39ede0d9032d",
+			"url": "http://localhost:8080/sample",
+			"method": "GET",
+			"headers": "",
+			"data": [
+				{
+					"key": "file",
+					"value": "clients.json",
+					"type": "file",
+					"enabled": true
+				}
+			],
+			"dataMode": "params",
+			"tests": "",
+			"preRequestScript": "",
+			"currentHelper": "normal",
+			"pathVariables": {},
+			"version": 2,
+			"name": "http://localhost:8080/sample",
+			"description": "",
+			"descriptionFormat": "html",
+			"collectionId": "e05b8941-fda7-cd84-ac80-578a88c1a103"
+		},
+		{
+			"id": "0ce976a9-362b-291f-3439-11ce08e2a202",
+			"url": "http://localhost:8080/sample/post-with-body",
+			"method": "POST",
+			"headers": "Content-Type: application/json\n",
+			"data": [],
+			"dataMode": "raw",
+			"tests": "",
+			"preRequestScript": "",
+			"currentHelper": "normal",
+			"pathVariables": {},
+			"version": 2,
+			"name": "http://localhost:8080/sample/post-with-body",
+			"description": "",
+			"descriptionFormat": "html",
+			"collectionId": "e05b8941-fda7-cd84-ac80-578a88c1a103",
+			"rawModeData": "{\n    \"message\" : \"Hello, World!\",\n    \"anotherMessage\" : \"I wonder how many times that string has been printed...\",\n    \"otherProperties\" : {\n        \"simpleProperty\" : \"See? Simple.\",\n        \"aList\" : [\"We\",\"can\",\"have\",\"mixed\",\"types\"],\n        \"anObject\" : {\n            \"this\" :\"however\",\n            \"will\" : \"always be a map\"\n    }\n  }\n}"
+		},
+		{
+			"id": "21783950-8995-ebca-b2a5-21c44b5e1fae",
+			"url": "http://localhost:8080/sample/upload",
+			"method": "POST",
+			"headers": "",
+			"data": [
+				{
+					"key": "file",
+					"value": "sample.txt",
+					"type": "file",
+					"enabled": true
+				}
+			],
+			"dataMode": "params",
+			"tests": "",
+			"preRequestScript": "",
+			"currentHelper": "normal",
+			"pathVariables": {},
+			"version": 2,
+			"name": "http://localhost:8080/sample/upload",
+			"description": "",
+			"descriptionFormat": "html",
+			"collectionId": "e05b8941-fda7-cd84-ac80-578a88c1a103"
+		},
+		{
+			"id": "2b4dd5a8-ca19-e785-10bf-abc46ad3c7eb",
+			"url": "http://localhost:8080/sample/get-with-params?dog=woof&cat=meow&fox=aringkingkingking",
+			"method": "GET",
+			"headers": "",
+			"data": [
+				{
+					"key": "file",
+					"value": "clients.json",
+					"type": "file",
+					"enabled": true
+				}
+			],
+			"dataMode": "params",
+			"tests": "",
+			"preRequestScript": "",
+			"currentHelper": "normal",
+			"pathVariables": {},
+			"version": 2,
+			"name": "http://localhost:8080/sample/get-with-params?dog=woof&cat=meow&fox=aringkingkingking",
+			"description": "",
+			"descriptionFormat": "html",
+			"collectionId": "e05b8941-fda7-cd84-ac80-578a88c1a103"
+		},
+		{
+			"id": "35936a78-9e4d-3060-34cd-cb6511ec735d",
+			"url": "http://localhost:8080/sample",
+			"method": "POST",
+			"headers": "",
+			"data": [
+				{
+					"key": "file",
+					"value": "clients.json",
+					"type": "file",
+					"enabled": true
+				}
+			],
+			"dataMode": "params",
+			"tests": "",
+			"preRequestScript": "",
+			"currentHelper": "normal",
+			"pathVariables": {},
+			"version": 2,
+			"name": "http://localhost:8080/sample",
+			"description": "",
+			"descriptionFormat": "html",
+			"collectionId": "e05b8941-fda7-cd84-ac80-578a88c1a103"
+		},
+		{
+			"id": "3d14c0de-a431-281d-57a2-fea5a101ba7c",
+			"url": "http://localhost:8080/sample/get?foo=bar",
+			"method": "GET",
+			"headers": "",
+			"data": [
+				{
+					"key": "file",
+					"value": "clients.json",
+					"type": "file",
+					"enabled": true
+				}
+			],
+			"dataMode": "params",
+			"tests": "",
+			"preRequestScript": "",
+			"currentHelper": "normal",
+			"pathVariables": {},
+			"version": 2,
+			"name": "http://localhost:8080/sample/get?foo=bar",
+			"description": "",
+			"descriptionFormat": "html",
+			"collectionId": "e05b8941-fda7-cd84-ac80-578a88c1a103"
+		},
+		{
+			"id": "4580e5b7-d1c0-dfb2-0430-2a2be1a104c7",
+			"url": "http://localhost:8080/sample/post-strict",
+			"method": "POST",
+			"headers": "Content-Type: application/xml\n",
+			"data": [],
+			"dataMode": "raw",
+			"tests": "",
+			"preRequestScript": "",
+			"currentHelper": "normal",
+			"pathVariables": {},
+			"version": 2,
+			"name": "http://localhost:8080/sample/post-strict",
+			"description": "",
+			"descriptionFormat": "html",
+			"collectionId": "e05b8941-fda7-cd84-ac80-578a88c1a103",
+			"rawModeData": "<request>\n    <message>Hello, World!</message>\n    <anotherMessage>I wonder how many times that string has been printed...</anotherMessage>\n    <otherProperties>\n        <simpleProperty>See? Simple.</simpleProperty>\n        <aList>We</aList>\n        <aList>can</aList>\n        <aList>have</aList>\n        <aList>mixed</aList>\n        <aList>types</aList>\n        <anObject>\n            <this>however</this>\n            <will>always be a map</will>\n        </anObject>\n    </otherProperties>\n</request>"
+		},
+		{
+			"id": "465de0f6-010f-cc56-513e-14dbee743394",
+			"url": "http://localhost:8080/sample/get/hello",
+			"method": "GET",
+			"headers": "",
+			"data": [
+				{
+					"key": "file",
+					"value": "clients.json",
+					"type": "file",
+					"enabled": true
+				}
+			],
+			"dataMode": "params",
+			"tests": "",
+			"preRequestScript": "",
+			"currentHelper": "normal",
+			"pathVariables": {},
+			"version": 2,
+			"name": "http://localhost:8080/sample/get/hello",
+			"description": "",
+			"descriptionFormat": "html",
+			"collectionId": "e05b8941-fda7-cd84-ac80-578a88c1a103"
+		},
+		{
+			"id": "86e2c74b-4955-f75a-f8d8-40dc4afebefc",
+			"url": "http://localhost:8080/sample/post-with-body?json=true",
+			"method": "POST",
+			"headers": "Content-Type: application/json\n",
+			"data": [],
+			"dataMode": "raw",
+			"tests": "",
+			"preRequestScript": "",
+			"currentHelper": "normal",
+			"pathVariables": {},
+			"version": 2,
+			"name": "http://localhost:8080/sample/post-with-body?json=true",
+			"description": "",
+			"descriptionFormat": "html",
+			"collectionId": "e05b8941-fda7-cd84-ac80-578a88c1a103",
+			"rawModeData": "{\n    \"message\" : \"Hello, World!\",\n    \"anotherMessage\" : \"I wonder how many times that string has been printed...\",\n    \"otherProperties\" : {\n        \"simpleProperty\" : \"See? Simple.\",\n        \"aList\" : [\"We\",\"can\",\"have\",\"mixed\",\"types\"],\n        \"anObject\" : {\n            \"this\" : \"however\",\n            \"will\" : \"always be a map\"\n    }\n  }\n}"
+		},
+		{
+			"id": "b595c556-80e8-09fa-c8e3-6648da34167b",
+			"url": "http://localhost:8080/sample/post-strict",
+			"method": "POST",
+			"headers": "Content-Type: application/json\n",
+			"data": [],
+			"dataMode": "raw",
+			"tests": "",
+			"preRequestScript": "",
+			"currentHelper": "normal",
+			"pathVariables": {},
+			"version": 2,
+			"name": "http://localhost:8080/sample/post-strict",
+			"description": "",
+			"descriptionFormat": "html",
+			"collectionId": "e05b8941-fda7-cd84-ac80-578a88c1a103",
+			"rawModeData": "{\n    \"message\" : \"Hello, World!\",\n    \"anotherMessage\" : \"I wonder how many times that string has been printed...\",\n    \"otherProperties\" : {\n        \"simpleProperty\" : \"See? Simple.\",\n        \"aList\" : [\"We\",\"can\",\"have\",\"mixed\",\"types\"],\n        \"anObject\" : {\n            \"this\" : \"however\",\n            \"will\" : \"always be a map\"\n    }\n  }\n}"
+		},
+		{
+			"id": "e33259ac-ce69-7fc9-1727-bfea78ea2558",
+			"url": "http://localhost:8080/sample/get?foo=derp",
+			"method": "GET",
+			"headers": "",
+			"data": [
+				{
+					"key": "file",
+					"value": "clients.json",
+					"type": "file",
+					"enabled": true
+				}
+			],
+			"dataMode": "params",
+			"tests": "",
+			"preRequestScript": "",
+			"currentHelper": "normal",
+			"pathVariables": {},
+			"version": 2,
+			"name": "http://localhost:8080/sample/get?foo=derp",
+			"description": "",
+			"descriptionFormat": "html",
+			"collectionId": "e05b8941-fda7-cd84-ac80-578a88c1a103"
+		}
+	]
+}
