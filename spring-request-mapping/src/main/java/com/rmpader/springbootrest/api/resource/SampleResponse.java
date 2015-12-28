@@ -1,9 +1,9 @@
-package com.rmpader.springbootrest.resource;
+package com.rmpader.springbootrest.api.resource;
 
 /**
  * @author RMPader
  */
-public class ErrorResource {
+public class SampleResponse {
 
     private String message;
 

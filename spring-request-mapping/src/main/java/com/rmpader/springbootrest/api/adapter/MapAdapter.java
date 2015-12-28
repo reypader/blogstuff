@@ -1,4 +1,4 @@
-package com.rmpader.springbootrest.resource.adapter;
+package com.rmpader.springbootrest.api.adapter;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;

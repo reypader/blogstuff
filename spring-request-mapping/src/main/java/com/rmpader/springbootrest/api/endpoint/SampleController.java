@@ -1,13 +1,13 @@
-package com.rmpader.springbootrest.controller;
+package com.rmpader.springbootrest.api.endpoint;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.rmpader.springbootrest.exception.SampleTranslatedException;
-import com.rmpader.springbootrest.resource.ErrorResource;
-import com.rmpader.springbootrest.resource.PostRequest;
-import com.rmpader.springbootrest.resource.PostXMLRequest;
-import com.rmpader.springbootrest.resource.SampleResource;
+import com.rmpader.springbootrest.api.resource.ErrorResponse;
+import com.rmpader.springbootrest.api.resource.PostRequest;
+import com.rmpader.springbootrest.api.resource.PostXMLRequest;
+import com.rmpader.springbootrest.api.resource.SampleResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -82,10 +82,10 @@ public class SampleController {
     @RequestMapping(value = "/post-with-body",
                     method = RequestMethod.POST,
                     params = "json=true")
-    public SampleResource sampleJsonResponse(@RequestBody PostRequest request) throws JsonProcessingException {
-        SampleResource resource = new SampleResource();
-        resource.setMessage(samplePostBody(request));
-        return resource;
+    public SampleResponse sampleJsonResponse(@RequestBody PostRequest request) throws JsonProcessingException {
+        SampleResponse response = new SampleResponse();
+        response.setMessage(samplePostBody(request));
+        return response;
     }
 
     @RequestMapping(value = "/post-strict",
@@ -117,11 +117,11 @@ public class SampleController {
     }
 
     @ExceptionHandler({JsonProcessingException.class, IOException.class})
-    public ResponseEntity<ErrorResource> handleAllExceptions(Exception e) {
-        ErrorResource errorResource = new ErrorResource();
-        errorResource.setMessage(e.getMessage());
+    public ResponseEntity<ErrorResponse> handleAllExceptions(Exception e) {
+        ErrorResponse errorResponse = new ErrorResponse();
+        errorResponse.setMessage(e.getMessage());
         return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                             .body(errorResource);
+                             .body(errorResponse);
     }
 
 }
