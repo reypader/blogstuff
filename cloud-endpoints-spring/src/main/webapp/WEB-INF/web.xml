@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<web-app xmlns="http://java.sun.com/xml/ns/javaee"
+         version="2.5">
+
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>com.rmpader.cloudendpointsspring.Application</param-value>
+    </context-param>
+
+    <listener>
+        <listener-class>org.springframework.boot.legacy.context.web.SpringBootContextLoaderListener</listener-class>
+    </listener>
+
+    <!-- Google App Engine API Explorer -->
+    <servlet>
+        <servlet-name>SystemServiceServlet</servlet-name>
+        <servlet-class>
+            com.rmpader.cloudendpointsspring.compatibility.AutowireSupportSystemServiceServlet
+        </servlet-class>
+        <init-param>
+            <param-name>services</param-name>
+            <param-value>
+                com.rmpader.cloudendpointsspring.api.endpoint.HelloEndpoint
+            </param-value>
+        </init-param>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SystemServiceServlet</servlet-name>
+        <url-pattern>/_ah/spi/*</url-pattern>
+    </servlet-mapping>
+
+</web-app>
