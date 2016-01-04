@@ -1,8 +1,9 @@
 package com.rmpader.springdrools.service;
 
 import com.rmpader.springdrools.api.exception.InvalidArtifactException;
+import com.rmpader.springdrools.api.resource.AddRuleArtifactRequest;
 import com.rmpader.springdrools.api.resource.ArtifactActivationRequest;
-import com.rmpader.springdrools.api.resource.RuleArtifactRequest;
+import com.rmpader.springdrools.api.resource.RuleArtifactResponse;
 import com.rmpader.springdrools.config.property.RulesProperties;
 import com.rmpader.springdrools.data.domain.RuleArtifact;
 import com.rmpader.springdrools.data.repository.RuleArtifactRepository;
@@ -18,6 +19,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 import static com.rmpader.springdrools.util.RuleUtil.createPath;
 
@@ -35,6 +38,7 @@ public class RuleAdminService {
 
     @Autowired
     private RuleArtifactRepository ruleArtifactRepository;
+    private List<RuleArtifactResponse> allArtifacts;
 
     @Transactional
     public void activateRuleArtifact(ArtifactActivationRequest artifactActivationRequest) throws IOException {
@@ -64,7 +68,7 @@ public class RuleAdminService {
                                  ruleArtifact.getVersion());
 
             UrlResource urlResource = (UrlResource) resources
-                                                      .newUrlResource(url);
+                    .newUrlResource(url);
             urlResource.setUsername(rulesProperties.getUsername());
             urlResource.setPassword(rulesProperties.getPassword());
             urlResource.setBasicAuthentication("enabled");
@@ -76,11 +80,28 @@ public class RuleAdminService {
         }
     }
 
-    public void addRuleArtifact(RuleArtifactRequest ruleArtifactRequest) {
-        RuleArtifact ruleArtifact = new RuleArtifact(ruleArtifactRequest.getGroupId(),
-                                                     ruleArtifactRequest.getArtifactId(),
-                                                     ruleArtifactRequest.getVersion());
+    public void addRuleArtifact(AddRuleArtifactRequest addRuleArtifactRequest) {
+        RuleArtifact ruleArtifact = new RuleArtifact(addRuleArtifactRequest.getGroupId(),
+                                                     addRuleArtifactRequest.getArtifactId(),
+                                                     addRuleArtifactRequest.getVersion());
 
         ruleArtifactRepository.save(ruleArtifact);
+    }
+
+    public List<RuleArtifactResponse> getAllArtifacts() {
+        Iterable<RuleArtifact> artifacts = ruleArtifactRepository.findAll();
+        List<RuleArtifactResponse> response = new ArrayList<>();
+
+        for (RuleArtifact artifact : artifacts) {
+            RuleArtifactResponse r = new RuleArtifactResponse();
+            r.setId(artifact.getId()
+                            .toString());
+            r.setGroupId(artifact.getGroupId());
+            r.setArtifactId(artifact.getArtifactId());
+            r.setVersion(artifact.getVersion());
+            response.add(r);
+        }
+
+        return response;
     }
 }

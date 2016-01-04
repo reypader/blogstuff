@@ -3,7 +3,7 @@ package com.rmpader.springdrools.api.resource;
 /**
  * @author RMPader
  */
-public class RuleArtifactRequest {
+public class AddRuleArtifactRequest {
 
     private String groupId;
     private String artifactId;
