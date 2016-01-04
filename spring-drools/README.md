@@ -115,16 +115,14 @@ Make sure to click on **Validate** before saving the file you will notice that s
 *  Update the release ID in `RulesConfig.java` to the correct information of your Drools Project
 
 ## How to run
-In the `drools-demo-app` folder:
+In the `drools-demo-app-*` folder:
     
 ```
 $ mvn spring-boot:run
 ```
 
-    
+* `drools-demo-app-classpath` contains code for in-classpath rules (i.e. DRL file in `src/main/resources`).
+* `drools-demo-app-remote` contains code for using rules deployed in a Drools Workbench.
+* `drools-demo-app-versioned` contains code for dynamically switching rule versions used from a Drools Workbench.
 ## Testing
-Use [Postman](https://chrome.google.com/webstore/detail/postman/fhbjgbiflinjbdggehcddcbncdddomop?hl=en) to interact with
-the API.
-
-Sample GET request:
-    http://localhost:8081/course/suggest?math=7&software=10&electronics=5&arts=10&social_studies=7
+See README of demo apps.
