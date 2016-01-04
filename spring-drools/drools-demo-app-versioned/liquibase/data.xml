@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet id="1" author="rey">
+        <comment>Create TODO table</comment>
+        <createTable tableName="rule_artifact">
+            <column name="id" type="int">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="group_id" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="artifact_id" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="version" type="varchar(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="active" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column name="date_created" type="DATETIME">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addAutoIncrement
+                columnDataType="int"
+                columnName="id"
+                tableName="rule_artifact"/>
+        <rollback>
+            <dropTable tableName="rule_artifact"/>
+        </rollback>
+    </changeSet>
+
+</databaseChangeLog>

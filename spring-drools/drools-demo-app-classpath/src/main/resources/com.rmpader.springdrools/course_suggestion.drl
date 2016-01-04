@@ -1,0 +1,30 @@
+package com.rmpader.springdrools
+
+import com.rmpader.springdrools.fact.SubjectRating;
+
+global com.rmpader.springdrools.fact.Suggestions suggestions;
+
+rule "Suggest Computer Science"
+when
+    SubjectRating( subject=="math", rating >= 6)
+    SubjectRating( subject=="software", rating >= 9)
+    SubjectRating( subject=="electronics", rating >= 3)
+then
+    suggestions.addSuggestedCourseCode("COMP-SCI");
+end
+
+rule "Suggest Theoretical Physics"
+when
+    SubjectRating( subject=="math", rating >= 9)
+    SubjectRating( subject=="physics", rating >= 9)
+then
+    suggestions.addSuggestedCourseCode("THEOR-PHYS");
+end
+
+rule "Suggest Theatrical Arts"
+when
+    SubjectRating( subject=="arts", rating >= 9)
+    SubjectRating( subject=="social_studies", rating >= 6)
+then
+    suggestions.addSuggestedCourseCode("THEAT-ART");
+end
