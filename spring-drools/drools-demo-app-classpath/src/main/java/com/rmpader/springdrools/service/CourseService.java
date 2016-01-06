@@ -35,7 +35,6 @@ public class CourseService {
         courseMatchSession.setGlobal("suggestions", suggestions);
         courseMatchSession.execute(facts);
 
-        //TODO: retrieve course name based on course code? Maybe.
         suggestions.getSuggestedCourseCodes()
                    .forEach(response::addSuggestion);
 

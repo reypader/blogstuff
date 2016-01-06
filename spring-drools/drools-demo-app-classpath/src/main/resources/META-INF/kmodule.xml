@@ -2,5 +2,4 @@
     <kbase name="base" default="true" packages="com.rmpader.springdrools">
         <ksession name="session" default="true" type="stateless"/>
     </kbase>
-
 </kmodule>
