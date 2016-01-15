@@ -59,9 +59,9 @@ public class SampleEndpoint {
 
     @RequestMapping(value = "/hello",
                     method = RequestMethod.GET)
-    public HelloResponse sayHello(@PathVariable("name") String name) {
+    public HelloResponse sayHello() {
         HelloResponse response = new HelloResponse();
-        response.setMessage("Hello, " + name);
+        response.setMessage("Hello, " + getCurrentUser().getUserProfile().getUsername());
         UserProfile userProfile = getCurrentUser().getUserProfile();
         response.setFrom(userProfile);
         return response;
