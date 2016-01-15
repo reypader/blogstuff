@@ -40,4 +40,54 @@
         </rollback>
     </changeSet>
 
+    <changeSet id="2" author="rey">
+        <comment>Create User and Authorities table</comment>
+        <createTable tableName="user_profiles">
+            <column name="username" type="varchar(50)">
+                <constraints primaryKey="true"
+                             nullable="false"/>
+            </column>
+            <column name="age" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="country" type="varchar(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="full_name" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <createTable tableName="user_authorities">
+            <column name="username" type="varchar(50)">
+                <constraints nullable="false"
+                             referencedTableName="user_profiles"
+                             referencedColumnNames="username"
+                             foreignKeyName="fk_authority_profile"/>
+            </column>
+            <column name="authority" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <createTable tableName="user_authentications">
+            <column name="username" type="varchar(50)">
+                <constraints nullable="false"
+                             referencedTableName="user_profiles"
+                             referencedColumnNames="username"
+                             foreignKeyName="fk_authentication_profile"/>
+            </column>
+            <column name="password" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addUniqueConstraint tableName="user_authorities"
+                             columnNames="username, authority"
+                             constraintName="uq_auth_username"/>
+        <rollback>
+            <dropUniqueConstraint tableName="user_authorities" constraintName="uq_auth_username"/>
+            <dropTable tableName="user_authorities"/>
+            <dropTable tableName="user_authentications"/>
+            <dropTable tableName="user_profiles"/>
+        </rollback>
+    </changeSet>
+
 </databaseChangeLog>
