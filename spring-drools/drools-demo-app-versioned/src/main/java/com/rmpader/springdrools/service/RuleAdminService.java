@@ -59,20 +59,20 @@ public class RuleAdminService {
 
         if (ruleArtifact != null) {
             KieServices ks = KieServices.Factory.get();
-            KieRepository repo = ks.getRepository();
             KieResources resources = ks.getResources();
 
             String url = rulesProperties.getRulesRepoPath()
                     + createPath(ruleArtifact.getGroupId(),
                                  ruleArtifact.getArtifactId(),
                                  ruleArtifact.getVersion());
-
             UrlResource urlResource = (UrlResource) resources
                     .newUrlResource(url);
             urlResource.setUsername(rulesProperties.getUsername());
             urlResource.setPassword(rulesProperties.getPassword());
             urlResource.setBasicAuthentication("enabled");
             InputStream is = urlResource.getInputStream();
+
+            KieRepository repo = ks.getRepository();
             KieModule k = repo.addKieModule(resources.newInputStreamResource(is));
             kieContainer.updateToVersion(k.getReleaseId());
         } else {
