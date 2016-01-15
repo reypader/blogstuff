@@ -32,7 +32,7 @@ public class SampleEndpoint {
     @Autowired
     private PasswordEncoder encoder;
 
-    @RequestMapping(value = "/user/add",
+    @RequestMapping(value = "/users/add",
                     method = RequestMethod.POST)
     public void addUser(@RequestBody AddUserRequest request) {
         String password = encoder.encode(request.getPassword());
