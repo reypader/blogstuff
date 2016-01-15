@@ -71,7 +71,8 @@ public class SampleEndpoint {
                     method = RequestMethod.GET)
     public CsrfResponse getCsrf(HttpServletRequest request) {
         CsrfResponse response = new CsrfResponse();
-        response.setCsrf(((CsrfToken) request.getAttribute("_csrf")).getToken());
+        CsrfToken csrfToken = (CsrfToken) request.getAttribute(CsrfToken.class.getName());
+        response.setCsrf(csrfToken.getToken());
         return response;
     }
 
