@@ -1,6 +1,8 @@
 package com.rmpader.basicsecurity.api.endpoint;
 
 import com.rmpader.basicsecurity.api.resource.AddUserRequest;
+import com.rmpader.basicsecurity.api.resource.CsrfResponse;
+import com.rmpader.basicsecurity.api.resource.HelloResponse;
 import com.rmpader.basicsecurity.data.model.UserAuthentication;
 import com.rmpader.basicsecurity.data.model.UserAuthority;
 import com.rmpader.basicsecurity.data.model.UserProfile;
@@ -8,24 +10,21 @@ import com.rmpader.basicsecurity.data.repository.UserAuthenticationRepository;
 import com.rmpader.basicsecurity.data.repository.UserAuthorityRepository;
 import com.rmpader.basicsecurity.data.repository.UserProfileRepository;
 import com.rmpader.basicsecurity.security.Authority;
+import com.rmpader.basicsecurity.security.UserDetailsImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.web.csrf.CsrfToken;
+import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
  * @author RMPader
  */
 @RestController
-@RequestMapping(value = "/user")
-public class UserEndpoint {
-
-    @Autowired
-    private UserProfileRepository userProfileRepository;
+public class SampleEndpoint {
 
     @Autowired
     private UserAuthorityRepository userAuthorityRepository;
@@ -34,11 +33,14 @@ public class UserEndpoint {
     private UserAuthenticationRepository userAuthenticationRepository;
 
     @Autowired
+    private UserProfileRepository userProfileRepository;
+
+    @Autowired
     private PasswordEncoder encoder;
 
-    @RequestMapping(value = "/add",
+    @RequestMapping(value = "/users/add",
                     method = RequestMethod.POST)
-    public void sayHello(@RequestBody AddUserRequest request) {
+    public void addUser(@RequestBody AddUserRequest request) {
         List<Authority> authorities = request.getAuthorities();
         UserProfile userProfile = new UserProfile(request.getUsername(), request.getFullName(), request.getAge(),
                                                   request.getCountry());
@@ -55,4 +57,27 @@ public class UserEndpoint {
         userAuthenticationRepository.save(userAuthentication);
     }
 
+    @RequestMapping(value = "/hello",
+                    method = RequestMethod.GET)
+    public HelloResponse sayHello(@PathVariable("name") String name) {
+        HelloResponse response = new HelloResponse();
+        response.setMessage("Hello, " + name);
+        UserProfile userProfile = getCurrentUser().getUserProfile();
+        response.setFrom(userProfile);
+        return response;
+    }
+
+    @RequestMapping(value = "/csrf",
+                    method = RequestMethod.GET)
+    public CsrfResponse getCsrf(HttpServletRequest request) {
+        CsrfResponse response = new CsrfResponse();
+        response.setCsrf(((CsrfToken) request.getAttribute("_csrf")).getToken());
+        return response;
+    }
+
+    public UserDetailsImpl getCurrentUser() {
+        return (UserDetailsImpl) SecurityContextHolder.getContext()
+                                                      .getAuthentication()
+                                                      .getPrincipal();
+    }
 }
