@@ -23,7 +23,6 @@ import java.util.List;
  * @author RMPader
  */
 @RestController
-@RequestMapping()
 public class SampleEndpoint {
 
     @Autowired
