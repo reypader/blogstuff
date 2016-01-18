@@ -36,7 +36,7 @@
         <insert tableName="users">
             <column name="username" value="admin"></column>
             <column name="password" value="$2a$10$B15lICT8M6qSzZPgSKugIuwUqeg/eCK5d8JTFWszcYCK1Nr6T6O8y"></column>
-            <column name="enabled" value="1"></column>
+            <column name="enabled" valueBoolean="true"></column>
         </insert>
         <insert tableName="authorities">
             <column name="username" value="admin"></column>
