@@ -33,6 +33,16 @@
         <addUniqueConstraint tableName="authorities"
                              columnNames="username, authority"
                              constraintName="ix_auth_username"/>
+        <insert tableName="users">
+            <column name="username" value="admin"></column>
+            <column name="password" value="$2a$10$B15lICT8M6qSzZPgSKugIuwUqeg/eCK5d8JTFWszcYCK1Nr6T6O8y"></column>
+            <column name="enabled" value="1"></column>
+        </insert>
+        <insert tableName="authorities">
+            <column name="username" value="admin"></column>
+            <column name="authority" value="ADMIN"></column>
+        </insert>
+
         <rollback>
             <dropUniqueConstraint tableName="authorities" constraintName="ix_auth_username"/>
             <dropTable tableName="authorities"/>
@@ -82,6 +92,21 @@
         <addUniqueConstraint tableName="user_authorities"
                              columnNames="username, authority"
                              constraintName="uq_auth_username"/>
+        <insert tableName="user_profiles">
+            <column name="username" value="admin"></column>
+            <column name="age" value="0"></column>
+            <column name="country" value="N/A"></column>
+            <column name="full_name" value="Administrator"></column>
+        </insert>
+        <insert tableName="user_authentications">
+            <column name="username" value="admin"></column>
+            <column name="password" value="$2a$10$B15lICT8M6qSzZPgSKugIuwUqeg/eCK5d8JTFWszcYCK1Nr6T6O8y"></column>
+        </insert>
+        <insert tableName="user_authorities">
+            <column name="username" value="admin"></column>
+            <column name="authority" value="ADMIN"></column>
+        </insert>
+
         <rollback>
             <dropUniqueConstraint tableName="user_authorities" constraintName="uq_auth_username"/>
             <dropTable tableName="user_authorities"/>
