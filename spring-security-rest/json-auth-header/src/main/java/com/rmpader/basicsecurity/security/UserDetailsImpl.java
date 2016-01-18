@@ -20,6 +20,15 @@ public class UserDetailsImpl implements UserDetails {
     private List<SimpleGrantedAuthority> authorities = new ArrayList<>();
     private UserAuthentication userAuthentication;
 
+    private UserDetailsImpl() {
+        UserProfile anonymousProfile = new UserProfile("anonymous", null, -1, null);
+        this.userAuthentication = new UserAuthentication(anonymousProfile, "");
+    }
+
+    public static UserDetailsImpl anonymous() {
+        return new UserDetailsImpl();
+    }
+
     public UserDetailsImpl(UserAuthentication userAuthentication) {
         this.userAuthentication = userAuthentication;
         this.authorities = userAuthentication.getUserProfile()

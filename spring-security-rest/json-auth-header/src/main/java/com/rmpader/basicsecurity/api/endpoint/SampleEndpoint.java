@@ -14,6 +14,7 @@ import com.rmpader.basicsecurity.security.UserDetailsImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -53,7 +54,6 @@ public class SampleEndpoint {
         userProfile = userProfileRepository.save(userProfile);
 
         for (Authority authority : authorities) {
-            System.out.println(authorities);
             userAuthorityRepository.save(new UserAuthority(userProfile, authority));
         }
 
@@ -67,7 +67,7 @@ public class SampleEndpoint {
     public UserDetailsResponse me() {
         UserDetailsResponse response = new UserDetailsResponse();
         response.setUsername(getCurrentUser().getUserProfile()
-                                                         .getUsername());
+                                             .getUsername());
         UserProfile userProfile = getCurrentUser().getUserProfile();
         response.setDetails(userProfile);
         return response;
@@ -83,8 +83,14 @@ public class SampleEndpoint {
     }
 
     public UserDetailsImpl getCurrentUser() {
-        return (UserDetailsImpl) SecurityContextHolder.getContext()
-                                                      .getAuthentication()
-                                                      .getPrincipal();
+        Object principal = SecurityContextHolder.getContext()
+                                                .getAuthentication()
+                                                .getPrincipal();
+
+        if (principal instanceof UserDetails) {
+            return (UserDetailsImpl) principal;
+        } else {
+            return UserDetailsImpl.anonymous();
+        }
     }
 }
