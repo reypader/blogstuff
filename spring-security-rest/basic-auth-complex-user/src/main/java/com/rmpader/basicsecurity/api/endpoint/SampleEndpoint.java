@@ -69,7 +69,7 @@ public class SampleEndpoint {
         response.setUsername(getCurrentUser().getUserProfile()
                                              .getUsername());
         UserProfile userProfile = getCurrentUser().getUserProfile();
-        response.setFrom(userProfile);
+        response.setDetails(userProfile);
         return response;
     }
 

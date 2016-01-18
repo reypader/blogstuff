@@ -18,11 +18,11 @@ public class UserDetailsResponse {
         this.username = username;
     }
 
-    public void setFrom(UserProfile details) {
+    public void setDetails(UserProfile details) {
         this.details = details;
     }
 
-    public UserProfile getFrom() {
+    public UserProfile getDetails() {
         return details;
     }
 }
