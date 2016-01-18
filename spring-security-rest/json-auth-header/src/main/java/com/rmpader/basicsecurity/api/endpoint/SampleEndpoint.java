@@ -12,10 +12,14 @@ import com.rmpader.basicsecurity.data.repository.UserProfileRepository;
 import com.rmpader.basicsecurity.security.Authority;
 import com.rmpader.basicsecurity.security.UserDetailsImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.csrf.CsrfToken;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
@@ -38,6 +42,7 @@ public class SampleEndpoint {
     @Autowired
     private PasswordEncoder encoder;
 
+    @PreAuthorize("hasRole('ADMIN')")
     @RequestMapping(value = "/users/add",
                     method = RequestMethod.POST)
     public void addUser(@RequestBody AddUserRequest request) {

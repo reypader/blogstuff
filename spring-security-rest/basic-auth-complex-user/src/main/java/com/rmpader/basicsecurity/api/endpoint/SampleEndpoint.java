@@ -9,6 +9,7 @@ import com.rmpader.basicsecurity.data.model.UserProfile;
 import com.rmpader.basicsecurity.data.repository.UserAuthenticationRepository;
 import com.rmpader.basicsecurity.data.repository.UserAuthorityRepository;
 import com.rmpader.basicsecurity.data.repository.UserProfileRepository;
+import com.rmpader.basicsecurity.security.Admin;
 import com.rmpader.basicsecurity.security.Authority;
 import com.rmpader.basicsecurity.security.UserDetailsImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,6 +42,7 @@ public class SampleEndpoint {
     @Autowired
     private PasswordEncoder encoder;
 
+    @Admin
     @RequestMapping(value = "/users/add",
                     method = RequestMethod.POST)
     public void addUser(@RequestBody AddUserRequest request) {
