@@ -2,7 +2,7 @@ package com.rmpader.basicsecurity.api.endpoint;
 
 import com.rmpader.basicsecurity.api.resource.AddUserRequest;
 import com.rmpader.basicsecurity.api.resource.CsrfResponse;
-import com.rmpader.basicsecurity.api.resource.HelloResponse;
+import com.rmpader.basicsecurity.api.resource.UserDetailsResponse;
 import com.rmpader.basicsecurity.data.model.UserAuthentication;
 import com.rmpader.basicsecurity.data.model.UserAuthority;
 import com.rmpader.basicsecurity.data.model.UserProfile;
@@ -15,7 +15,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.csrf.CsrfToken;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
@@ -57,11 +60,12 @@ public class SampleEndpoint {
         userAuthenticationRepository.save(userAuthentication);
     }
 
-    @RequestMapping(value = "/hello",
+    @RequestMapping(value = "/me",
                     method = RequestMethod.GET)
-    public HelloResponse sayHello() {
-        HelloResponse response = new HelloResponse();
-        response.setMessage("Hello, " + getCurrentUser().getUserProfile().getUsername());
+    public UserDetailsResponse me() {
+        UserDetailsResponse response = new UserDetailsResponse();
+        response.setUsername(getCurrentUser().getUserProfile()
+                                             .getUsername());
         UserProfile userProfile = getCurrentUser().getUserProfile();
         response.setFrom(userProfile);
         return response;

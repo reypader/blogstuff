@@ -23,10 +23,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         // @formatter:off
         http.authorizeRequests()
-                .antMatchers("/", "/login", "/user/*", "/csrf").permitAll()
+                .antMatchers("/me", "/login", "/csrf").permitAll()
                 .anyRequest().authenticated()
-                .and()
-            .httpBasic();
+            .and()
+                .httpBasic()
+            .and()
+                .logout()
+                    .logoutSuccessUrl("/me");
         // @formatter:on
     }
 

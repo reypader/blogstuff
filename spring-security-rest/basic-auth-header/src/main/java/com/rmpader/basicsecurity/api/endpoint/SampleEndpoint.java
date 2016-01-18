@@ -2,7 +2,7 @@ package com.rmpader.basicsecurity.api.endpoint;
 
 import com.rmpader.basicsecurity.api.resource.AddUserRequest;
 import com.rmpader.basicsecurity.api.resource.CsrfResponse;
-import com.rmpader.basicsecurity.api.resource.HelloResponse;
+import com.rmpader.basicsecurity.api.resource.UserDetailsResponse;
 import com.rmpader.basicsecurity.data.model.UserProfile;
 import com.rmpader.basicsecurity.data.repository.UserProfileRepository;
 import com.rmpader.basicsecurity.security.Authority;
@@ -42,11 +42,11 @@ public class SampleEndpoint {
         userProfileRepository.save(userProfile);
     }
 
-    @RequestMapping(value = "/hello",
+    @RequestMapping(value = "/me",
                     method = RequestMethod.GET)
-    public HelloResponse sayHello() {
-        HelloResponse response = new HelloResponse();
-        response.setMessage("Hello, " + getCurrentUser().getUsername());
+    public UserDetailsResponse me() {
+        UserDetailsResponse response = new UserDetailsResponse();
+        response.setUsername(getCurrentUser().getUsername());
         return response;
     }
 

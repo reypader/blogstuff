@@ -5,17 +5,17 @@ import com.rmpader.basicsecurity.data.model.UserProfile;
 /**
  * @author RMPader
  */
-public class HelloResponse {
+public class UserDetailsResponse {
 
-    private String message;
+    private String username;
     private UserProfile details;
 
-    public String getMessage() {
-        return message;
+    public String getUsername() {
+        return username;
     }
 
-    public void setMessage(String message) {
-        this.message = message;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public void setFrom(UserProfile details) {

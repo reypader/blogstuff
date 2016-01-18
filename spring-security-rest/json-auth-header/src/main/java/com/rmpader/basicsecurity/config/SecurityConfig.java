@@ -24,14 +24,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         // @formatter:off
         http.authorizeRequests()
-                .antMatchers("/", "/login", "/user/*", "/csrf").permitAll()
+                .antMatchers("/me", "/login", "/csrf").permitAll()
                 .anyRequest().authenticated()
             .and()
-                .formLogin()
-                    .defaultSuccessUrl("/hello", true)
-            .and()
                 .exceptionHandling()
-                    .authenticationEntryPoint(new Http403ForbiddenEntryPoint());
+                    .authenticationEntryPoint(new Http403ForbiddenEntryPoint())
+            .and()
+                .formLogin()
+                    .defaultSuccessUrl("/me", true)
+            .and()
+                .logout()
+                    .logoutSuccessUrl("/me");
         // @formatter:on
     }
 
