@@ -1,0 +1,153 @@
+{
+	"id": "1fd92181-b431-dc45-b538-6aa93c792f56",
+	"name": "Sample JSON login via POST",
+	"description": "",
+	"order": [
+		"8437e17d-3615-390f-ad53-3b5cd9376ff6",
+		"9b762f81-da33-c0fb-c9e1-79c568300620",
+		"7e6a4f3b-5021-89fa-bb77-3d17bd757714",
+		"d6b76d64-940a-7664-5fb2-eb0eee57740c",
+		"bc13237d-a174-219b-ff05-fb64a3201ce9",
+		"f91e450d-7e1f-be51-0f80-dd5c49cb7420"
+	],
+	"folders": [],
+	"timestamp": 1453124058867,
+	"owner": "",
+	"remoteLink": "",
+	"public": false,
+	"requests": [
+		{
+			"id": "7e6a4f3b-5021-89fa-bb77-3d17bd757714",
+			"url": "http://localhost:8080/me",
+			"method": "GET",
+			"headers": "",
+			"data": [],
+			"dataMode": "params",
+			"tests": "",
+			"preRequestScript": "",
+			"currentHelper": "normal",
+			"pathVariables": {},
+			"version": 2,
+			"name": "Currently logged in user",
+			"description": "",
+			"descriptionFormat": "html",
+			"collectionId": "1fd92181-b431-dc45-b538-6aa93c792f56"
+		},
+		{
+			"id": "8437e17d-3615-390f-ad53-3b5cd9376ff6",
+			"headers": "X-CSRF-TOKEN: {{csrf_token}}\nContent-Type: application/json\nAuthorization: Basic YWRtaW46cGFzc3dvcmQ=\n",
+			"url": "http://localhost:8080/users/add",
+			"preRequestScript": "",
+			"pathVariables": {},
+			"method": "POST",
+			"data": [],
+			"dataMode": "raw",
+			"version": 2,
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1453124081986,
+			"name": "Add TESTUSER",
+			"description": "",
+			"collectionId": "1fd92181-b431-dc45-b538-6aa93c792f56",
+			"rawModeData": "{\n    \"username\" : \"testuser\",\n    \"password\" : \"password\",\n    \"fullName\" : \"John Doe\",\n    \"age\" : 18,\n    \"country\": \"US\",\n    \"authorities\" : [\n        \"ADMIN\"\n    ]\n}"
+		},
+		{
+			"id": "9b762f81-da33-c0fb-c9e1-79c568300620",
+			"url": "http://localhost:8080/csrf",
+			"method": "GET",
+			"headers": "",
+			"data": [],
+			"dataMode": "params",
+			"tests": "var jsonData = JSON.parse(responseBody);\npostman.setEnvironmentVariable(\"csrf_token\", jsonData.csrf);",
+			"preRequestScript": "",
+			"currentHelper": "normal",
+			"pathVariables": {},
+			"version": 2,
+			"name": "Generate CSRF Token",
+			"description": "",
+			"descriptionFormat": "html",
+			"collectionId": "1fd92181-b431-dc45-b538-6aa93c792f56"
+		},
+		{
+			"id": "bc13237d-a174-219b-ff05-fb64a3201ce9",
+			"headers": "X-CSRF-TOKEN: {{csrf_token}}\n",
+			"url": "http://localhost:8080/login",
+			"preRequestScript": "",
+			"pathVariables": {},
+			"method": "POST",
+			"data": [
+				{
+					"key": "username",
+					"value": "testuser",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "password",
+					"value": "password",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "urlencoded",
+			"version": 2,
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1453124119873,
+			"name": "Login TESTUSER",
+			"description": "",
+			"collectionId": "1fd92181-b431-dc45-b538-6aa93c792f56"
+		},
+		{
+			"id": "d6b76d64-940a-7664-5fb2-eb0eee57740c",
+			"url": "http://localhost:8080/login",
+			"method": "POST",
+			"headers": "X-CSRF-TOKEN: {{csrf_token}}\n",
+			"data": [
+				{
+					"key": "username",
+					"value": "admin",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "password",
+					"value": "password",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "urlencoded",
+			"tests": "",
+			"preRequestScript": "",
+			"currentHelper": "normal",
+			"pathVariables": {},
+			"version": 2,
+			"name": "Login ADMIN",
+			"description": "",
+			"descriptionFormat": "html",
+			"collectionId": "1fd92181-b431-dc45-b538-6aa93c792f56"
+		},
+		{
+			"id": "f91e450d-7e1f-be51-0f80-dd5c49cb7420",
+			"headers": "X-CSRF-TOKEN: {{csrf_token}}\n",
+			"url": "http://localhost:8080/logout",
+			"preRequestScript": "",
+			"pathVariables": {},
+			"method": "POST",
+			"data": [],
+			"dataMode": "raw",
+			"version": 2,
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1453124177414,
+			"name": "Logout current user",
+			"description": "",
+			"collectionId": "1fd92181-b431-dc45-b538-6aa93c792f56",
+			"rawModeData": ""
+		}
+	]
+}
