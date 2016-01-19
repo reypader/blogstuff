@@ -5,7 +5,7 @@
     <context-param>
         <param-name>contextConfigLocation</param-name>
         <param-value>
-            com.rmpader.basicsecurity.Application
+            com.rmpader.security.Application
         </param-value>
     </context-param>
 
