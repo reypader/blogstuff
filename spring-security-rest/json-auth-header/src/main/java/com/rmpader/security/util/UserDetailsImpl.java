@@ -1,6 +1,7 @@
 package com.rmpader.security.util;
 
 import com.rmpader.security.data.model.UserAuthentication;
+import com.rmpader.security.data.model.UserAuthority;
 import com.rmpader.security.data.model.UserProfile;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -10,7 +11,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * @author RMPader
@@ -25,19 +25,16 @@ public class UserDetailsImpl implements UserDetails {
         this.userAuthentication = new UserAuthentication(anonymousProfile, "");
     }
 
-    public static UserDetailsImpl anonymous() {
-        return new UserDetailsImpl();
-    }
-
     public UserDetailsImpl(UserAuthentication userAuthentication) {
         this.userAuthentication = userAuthentication;
-        this.authorities = userAuthentication.getUserProfile()
-                                             .getAuthorities()
-                                             .stream()
-                                             .map(userAuthority ->
-                                                          new SimpleGrantedAuthority(userAuthority.getId()
-                                                                                                  .getAuthority()))
-                                             .collect(Collectors.toList());
+        for (UserAuthority userAuthority : userAuthentication.getUserProfile().getAuthorities()) {
+            this.authorities.add(new SimpleGrantedAuthority(userAuthority.getId()
+                                                                         .getAuthority()));
+        }
+    }
+
+    public static UserDetailsImpl anonymous() {
+        return new UserDetailsImpl();
     }
 
     public UserAuthentication getUserAuthentication() {
